@@ -102,7 +102,8 @@ def paste_csv_data(fields):
                 io.StringIO(paste_text),
                 sep=sep,
                 header=None,
-                names=fields
+                names=fields,
+                usecols=range(len(fields))
             )
             st.rerun()
         except Exception as e:
@@ -124,7 +125,7 @@ def merge_dataframe_fields(old_df, new_fields):
         if col in old_df.columns:
             new_df[col] = old_df[col]
         else:
-            new_df[col] = ""  # Or use NaN if preferred
+            new_df[col] = ""
     return new_df
 
 def main():
